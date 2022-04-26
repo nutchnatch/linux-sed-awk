@@ -1,0 +1,70 @@
+^ --> start of a string
+^root --> string starts with root
+$ --> end of the string
+4$ --> ends with character 4
+
+
+### Anchors ####
+$ grep server /etc/ntp.conf  --> search entries for server in the file
+
+$ grep '^server' /etc/ntp.conf --> seaech for entries starting by 'server'
+
+$ grep 'VM$' /usr/local/var/log/rabbitmq/std_error.log --> finds all entries finishing with 'VM'
+
+$ grep -v 'VM$' /usr/local/var/log/rabbitmq/std_error.log --> reverses (-v) the latest logs, showing what does not have 'VM' at the end
+
+$ grep '^$' /etc/ntp.conf -> shows emtpy line on the file
+
+$ grep -v '^$' /etc/ntp.conf --> show lines that are not empty
+
+$ cat -vet !$ --> based on the latest output, shows what has $ at the end of the line
+
+
+### Ranges ###
+[A-Za-z] --> any letter
+[0-9] --> any digit
+[a-z_] --> any lowercase letter or underscore
+[349] --> matches 3, 4 or 9 numbers
+
+$ declare -f --> shows function names
+
+$ declare -f | grep '^[a-z_]' --> search for lowecase or underscore charecters
+
+$ grep '[31]$' /usr/local/var/log/rabbitmq/std_error.log --> finds entries finishing on a 3 or q 1
+
+$ grep '[^31]$' /usr/local/var/log/rabbitmq/std_error.log --> [^31]$ -  ^ negates the above search, showing the inverse
+
+$ grep '[Hh]alting' /usr/local/var/log/rabbitmq/std_error.log --> everything that contains the word halting independently of the case of the first letter
+$ grep '[Ll]ogger' /usr/local/var/log/rabbitmq/std_error.log
+
+
+### Bounbdaries ###
+\s --> represents any whitspace - using a capital letter (\S) reverses the meaning of the boundary
+'\ssystem' --> matches "file system"
+\b --> word boundary, like a hiffen, as a word separator - using a capital letter (\B) reverses the meaning of the boundary
+'\bsystem' --> matches "file system" or "file-system"
+
+$ grep 'diagnostics\b' /usr/local/var/log/rabbitmq/std_error.log --> everything surrounding at the end of "diagnostics" by a character
+
+$ grep '\bdiagnostic' /usr/local/var/log/rabbitmq/std_error.log --> everything surrounding at the beggining of "diagnostics" by a character
+
+$ grep 'Logger\s' /usr/local/var/log/rabbitmq/std_error.log --> filters those which include space at the end of "Logger"
+
+$ grep '^Logger\s' /usr/local/var/log/rabbitmq/std_error.log --> filters those which include space at the end of "Logger", and starting with "Logger"
+
+$ grep '[Ll]ogger\s' /usr/local/var/log/rabbitmq/std_error.log --> filters those which include space at the end of "Logger", independently of the capital letter at the beggining
+
+$ grep '[Ll]ogger\S' /usr/local/var/log/rabbitmq/std_error.log --> the oposite od the above filter
+
+$ grep pop[23] /etc/services --> showinf only entries for pop2 or pop3
+
+$ grep '\bpop[0-9]' /etc/services --> filter those containing a number at the end, and with a character at the beggining
+
+$ grep '\Bpop[0-9]\b' /etc/services --> the opposite filter, showing entries with no boundaries at the beggining
+
+$ grep 'pop[0-9]\b' /etc/services --> shows everything having a sorrounding at the end
+
+$ grep 'pop[0-9]\B' /etc/services --> the opposite, don't showing those which does not have a sorrounding at the end
+
+
+
