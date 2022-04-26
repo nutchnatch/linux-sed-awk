@@ -1,0 +1,38 @@
+###GREP INTRO####
+#See program version:
+$ declare -f | grep --version
+
+$grep --version --> shows grep's version
+
+$sed --version --> shows the version of sed
+
+#get a specific function with grep - grep uses a regular expression (easy way to show the function names)
+$declare -f | grep '^[a-z_]'
+
+$declare -f --> show functions
+
+#search for a word in a file
+$ grep PS1 /etc/profile
+$ grep ^user /etc/password --> search for all that starts by user
+
+
+####SED INTRO###
+$sed 'p' /etc/newsyslog.conf ---> prints the content of newsyslog.conf
+
+$ sed -n 'p' /etc/newsyslog.conf  --> suppress the standard output - shows obly lines maching the pattern
+
+$ sed -n ' 1,5 p' /etc/newsyslog.conf --> prints only lines one to 5
+
+$ sed -n ' /^# entries/ p' /etc/newsyslog.conf --> prints only lines starting with "# entries" (regex)
+
+$ sed ' /^#/ d' /etc/newsyslog.conf --> print entries, removing the comments (#) - "d" option is used to delete
+
+$ sed ' /^#/ d; /^$/ d' /etc/newsyslog.conf --> print entries, removing the comments, and removing empty lines(/^$) - "$" is the empty line starter
+
+$ sed ' /^version/ d; /^$/ d' Downloads/docker-compose.yaml --> print content without liones starting with "version"
+
+sudo sed -i.bak'/^version/ d ; /^$/ d' Downloads/docker-compose.yaml --> -i options edit file content; .bak creates a backup file before changing te file
+
+
+### AWK INTRO###
+
