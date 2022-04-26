@@ -72,4 +72,13 @@ $ sysctl -a | grep -c name --> count the number of processors on the machine
 
 $ cat !$ --> go back and look at the last argument
 
+# create a file called "tools", then execute the script: parse-csv-file.sh, like this:
+$ ./parse-csv-file.sh tools
 
+$ ./parse-csv-file.sh tools | grep -A2 hammer --> reads only hammer entry with the first two lines of thar entry (-A2 - two lines After)
+
+$ ./parse-csv-file.sh tools | grep -B2 hammer --> same output but with two lines before (-B2)
+
+ ./parse-csv-file.sh tools | grep -C2 hammer --> same output but with two lines before and two lines after (-C2 - count )
+ 
+ $ ./parse-csv-file.sh tools | grep -iC2 Hammer --> combines commands together (-i - case insensitive) - shows the same result for Hammer
