@@ -13,5 +13,13 @@ $ sed -n '/^a[0-9]/ p ' test --> start with letter a and followed by a number
 $ sed ' [range] s/<string>/<replacement>/ ' /etc/passwd --> s-> substitute command; /->delimiter string->word to be searched; replacement-> to replace the searched word
 $ sed ' /^gretchen/ s@/bin/bash@/bin/sh@ ' /etc/passwd --> look at lines that begins with "gretchen", search for /bin/bash and replace with /bin/sh - delimiter is @. If we used / instead of @ we would have to escape the /. If we want to replace more than one per line, we use the 'g' option
 
+$ nl parse-csv-file.sh  --> show lines numbering
+$ sed ' 6,8 s/^/    /g' parse-csv-file.sh --> i+ndent lines from 6 to 9
+$ sed -n ' 6,8 s/^/              /p' parse-csv-file.sh --> show the match lines
+$ sed -n ' /^_www/ s@/usr/bin/@bin/sh@p ' /etc/passwd --> search for lines starting by _www, and replace /usr/bin by bin/sh
+
+
+
+
 
 
