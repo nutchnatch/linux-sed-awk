@@ -1,0 +1,20 @@
+s/ --> substitution
+\([^,]*\) --> grouping defined with scaped parentheses. We are looking for charactes that are not commas (^,)
+/\U\1/ --> replace string: uppercases first grouping
+
+$ sed 's@\([^,]*\)@\U\1@' employees --> Upercase the first fields of a comman separated file. 's' is the substitution element, @ is the delimiter. 'U' is the replacement field
+$ sed 's@\([^,]*\),\([^,]*\)@\U\1\L\2@' employees --> Uppercase field 1 and lowercase field 2
+$ sed 's@\([^,]*\)@\U\1@' employees --> scape the pharentesis (\(); substitutes the match (the first person name of the file) by a uppercase
+$ sed 's@\([^,]*\),\([^,]*\)@\U\1\L\2@' employees --> replace the first two names entries in the file, uppercase the first and lowercase the secod
+--> to permanentely change the files, we need to send the result to another file or use "-i" option.
+$ sed 's/\(^\|[^0-9.]\)\([0-9]\+\)\([0-9]\{3\}\)/\1\2,\3/g' --> grouping numbers in to 1000s. Printing a comma in front of groups of 3 numbers
+
+create file content:
+$ cat > loadavg
+0.06 0.11 0.08 1/338 7567
+
+$ cat > catalog.sed
+s/,/:/g
+s/\(^\|[^0-9.]\)\([0-9]\+\)\([0-9]\{3\}\)/\1\2,\3/g --> create rules
+$ sed -f catalog.sed loadavg --> apply the rules
+
