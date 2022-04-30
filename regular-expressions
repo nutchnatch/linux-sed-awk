@@ -41,7 +41,7 @@ $ grep '[Ll]ogger' /usr/local/var/log/rabbitmq/std_error.log
 ### Bounbdaries ###
 \s --> represents any whitspace - using a capital letter (\S) reverses the meaning of the boundary
 '\ssystem' --> matches "file system"
-\b --> word boundary, like a hiffen, as a word separator - using a capital letter (\B) reverses the meaning of the boundary
+\b --> word boundary, like a hiffen, as a word separator - using a capital letter (\B) reverses the meaning of the boundary (non-word boundary)
 '\bsystem' --> matches "file system" or "file-system"
 
 $ grep 'diagnostics\b' /usr/local/var/log/rabbitmq/std_error.log --> everything surrounding at the end of "diagnostics" by a character
@@ -66,5 +66,9 @@ $ grep 'pop[0-9]\b' /etc/services --> shows everything having a sorrounding at t
 
 $ grep 'pop[0-9]\B' /etc/services --> the opposite, don't showing those which does not have a sorrounding at the end
 
+
+$ grep -vE '\b[0-9]{3}-[0-9]{2}-[0-9]{4}\b' employees --> get the incorrect emplyee record (we add -v to get the oposite)
+
+$ grep -E '\b[0-9]{3}-[0-9]{2}-[0-9]{4}\b' employees --> get the correct emplyee record
 
 
