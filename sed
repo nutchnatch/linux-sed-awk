@@ -18,6 +18,16 @@ $ sed ' 6,8 s/^/    /g' parse-csv-file.sh --> i+ndent lines from 6 to 9
 $ sed -n ' 6,8 s/^/              /p' parse-csv-file.sh --> show the match lines
 $ sed -n ' /^_www/ s@/usr/bin/@bin/sh@p ' /etc/passwd --> search for lines starting by _www, and replace /usr/bin by bin/sh
 
+##append, insert and delete ##
+# append #
+$ sed ' /^server 3/ a server server ntp,example.com' /etc/ntp.conf -->look the line beginning with "server 3", add a line afterward (a): server ntp,example.com; 
+$ sed ' /^server 0/ i server server ntp,example.com' /etc/ntp.conf --> same example but here inserting a new line above (i)
+$ sed ' /^server\[0-9]\.ubuntu/ d' /etc/ntp.conf  --> deletes lines that begins with server and a space (\s) followed by a single line (we scape the dot)
+ $ sed ' {
+> /^server 0/i server ntp.exampole.com
+> /^server\s[0-9]/
+> }' /etc/ntp.conf.  --> add multiple operaions in the same command
+
 
 
 
