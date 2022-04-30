@@ -72,3 +72,10 @@ $ grep -vE '\b[0-9]{3}-[0-9]{2}-[0-9]{4}\b' employees --> get the incorrect empl
 $ grep -E '\b[0-9]{3}-[0-9]{2}-[0-9]{4}\b' employees --> get the correct emplyee record
 
 
+$ - end of the line
+^ - beginning of the line
+\b \s - baundaring character
+{4} -> absolute number
+? ->  makes the previous character optional
+* -> zero or more characters
++ -> one or more of the previous characters
