@@ -1,0 +1,33 @@
+### GREP ####
+#Global Regular Expression and Printing - alows to search output files
+
+$ grep --help --> sees grep manual
+
+$ man grep --> returns grep manual
+
+$ ifconfig p2p0 | grep ether -> search for "ether" entry in machine config
+
+$ ifconfig p2p0 | grep -v ether --> revert the above search
+
+$ grep log Downloads/* --> search for log on multiple files
+
+$ grep log Downloads/* --> search "log" in the list of dirs
+
+$ grep -c services Downloads/docker-compose.yaml --> counts how many times "services" word appear on the file
+
+$ grep pam_deny /etc/pam.d/* --> search for pam_deny file in a list of files
+
+$ sysctl -a | grep -c name --> count the number of processors on the machine
+
+$ cat !$ --> go back and look at the last argument
+
+# create a file called "tools", then execute the script: parse-csv-file.sh, like this:
+$ ./parse-csv-file.sh tools
+
+$ ./parse-csv-file.sh tools | grep -A2 hammer --> reads only hammer entry with the first two lines of thar entry (-A2 - two lines After)
+
+$ ./parse-csv-file.sh tools | grep -B2 hammer --> same output but with two lines before (-B2)
+
+ ./parse-csv-file.sh tools | grep -C2 hammer --> same output but with two lines before and two lines after (-C2 - count )
+ 
+ $ ./parse-csv-file.sh tools | grep -iC2 Hammer --> combines commands together (-i - case insensitive) - shows the same result for Hammer
