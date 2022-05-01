@@ -1,0 +1,18 @@
+# execute sed from our text editor using vi or vim
+: 2,10 s/^/      / --> replace the start of the line (/^/); put indent through lines 2 to 10;
+
+## vi
+$ cp /etc/ntp.conf .
+$ vi nto.conf
+:%/server/system/g --> in vi it referes to the whole document with a substitute command(/g - globaly) - replace 'server' for system in all occorrences in the file
+:1s/system/server/g --> make the change only in the first line
+:1d --> delete first line
+:/^server/s/^/    / --> search from 'server', replace the beginning by a space (indenting)
+:3,5s/^/    / --> add indentation between line 3 and 5
+:set number --> add line numbers to the vi file
+:6,$ s/^/     / --> add indentation from line6 until the end of the file
+
+$ vi parse-csv-file.sh 
+:4,8 w whle --> save the while loop and save it as an example - write to while
+$ vi newwhile 
+:read while --> read from the saved while
