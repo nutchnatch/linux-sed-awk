@@ -1,2 +1,23 @@
+$ cat file.list 
+/etc/hosts
+/etc/services
+
 $ sed ' s/^/ls -l /e ' file.list --> search from the beginning of the string (^/); ls -l -> the command; /e -> execute
 $ sed ' s/^/stat /e ' file.list --> same, using stat command
+
+$ cat > user.list
+gwen
+monty
+
+$ sed ' s/^/sudo useradd /e ' user.list --> add the existing user to the system
+$ tail -n 2 /etc/passwd --> list user add operations
+$ sed ' s/^/sudo userdel -r /e ' user.list --> remove users
+$ sed ' /^\// s/^/tar -rf catalog.tar /e ' cat.list
+
+$ mkdir -p catalog/garden --> create dirs recursively
+$ cat > cat.list
+/Users/nivaldomonteiro/catalog/garden
+
+$ sed ' /^\// s/^/tar -rf catalog.tar /e ' cat.list --> double check if we have a full file system path -> range operator - begin with forward slash 
+(scape the slash because it is within the regex), then close the range (/^//) and go to substitute command - add content of cat.list to our tar file
+$ tar -tf catalog.tar --> read the tar file
