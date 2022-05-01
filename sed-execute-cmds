@@ -21,3 +21,5 @@ $ cat > cat.list
 $ sed ' /^\// s/^/tar -rf catalog.tar /e ' cat.list --> double check if we have a full file system path -> range operator - begin with forward slash 
 (scape the slash because it is within the regex), then close the range (/^//) and go to substitute command - add content of cat.list to our tar file
 $ tar -tf catalog.tar --> read the tar file
+$ sed ' /^\// s/^/rmdir /e ' cat.list --> deletes the garden dir
+
