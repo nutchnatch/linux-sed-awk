@@ -1,0 +1,2 @@
+$ sed ' s/^/ls -l /e ' file.list --> search from the beginning of the string (^/); ls -l -> the command; /e -> execute
+$ sed ' s/^/stat /e ' file.list --> same, using stat command
