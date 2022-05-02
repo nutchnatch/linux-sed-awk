@@ -1,0 +1,60 @@
+$ cat > virtualhost.conf
+<VirtualHost *:80>
+DOcumentRoot /www/example
+
+ServerName www.example.org
+# Other directives here
+</VirtualHost>         
+<VirtualHost *:80>
+DocumentRoot /www/theurbanpenguin
+ServerName www.theurbanpenguin.com
+# Other directives here
+</VirtualHost>
+
+<VirtualHost *:80>
+DocumentRoot /www/linuxformat
+ServerName www.linuxformat.com
+# Other directives here
+
+$ sed ' /^\s*$/d ' virtualhost.conf --> delete additional blank lines. Search for any ammount of spaces or no-spaces followed by the end of the line (/^\s*$) - dwlete those (/d)
+$ sed ' /^<\/Virt/a \ ' virtualhost.con --> search for lines that begins by the </Virtual (/^<\/Virt/a \) and append a new line (/a \) 
+$ sed -i ' /^<\/Virt/a \ ' virtualhost.conf --> save the changes to the file
+
+BEGIN { RS="\n\n" ; } --<st record separator to duple new line
+$0 ~ search { print } ---> represents the complete line. The ~ is for when we have a match
+$ awk -f virtualhost.awk search=example virtualhost.conf --> use the created awk file to search and print for an inpuit (in this case "example")
+
+$ ./parse-csv-file.sh tools | grep -A2 brush --> search for brush and the 2 subsequent lines after it
+ $ cat > tools.xml
+ <product>
+<name>drill</name>
+<price>99</price>
+<stock>5</stock>
+<product>
+
+
+<product>
+<name>hammer</name>
+<price>10</price>
+<stock>50</stock>
+<product>
+
+<product>
+<name>crewdriver/name>
+<price>5</price>
+<stock>51</stock>
+<product>
+
+<product>
+<name>table saw</name>
+<price>1099.99</price>
+<stock>5</stock>
+<product>
+
+$ awk -f virtualhost.awk search=saw tools.xml --> search on tools.xml using awk search file
+
+cat > catalog.awk
+BEGIN { FS="[><]"; RS="\n\n" ; OFS=" "; } --> --> FS (field separator) will be [><]; OFS(output field separator) will be empty space
+$0 ~ search { print $4 ": " $5, $8 ": " $9, $12 ": " $13 }
+$ awk -f catalog.awk search="driver" tools.xml  --> search for "driver" using awk file
+
