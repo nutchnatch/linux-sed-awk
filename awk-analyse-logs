@@ -1,0 +1,28 @@
+## Reading log files ###
+# For this task, we need to know the log file (its fileds)
+$ awk ' { print $1 } ' access.log --> print ip from log (first field)
+$ wc -l ~/Library/Logs/photoslibraryupgrade.log  --> count the number of lines in the file
+$ awk ' { print $9  } ' ~/Library/Logs/photoslibraryupgrade.log --> read the count field from the log file
+$ awk ' $9 == Favorite { print $0 } ' ~/Library/Logs/photoslibraryupgrade.log --> print the whole line ($0) where field 9 == Favorite
+$ awk ' { print $1  } ' ~/Library/Logs/photoslibraryupgrade.log --> filter the dates
+
+$ cat count.awk
+BEGIN { FS=" ";print "Log access" } --> Field separator
+{ ip[$1]++ } --> array called ip -- associative array - array key name ($1) - for each ip address, 
+we create a key  based on that ip address. For each time we find that key, we incremet that value.
+Example: ip[192.168.0.1]3 - array(ip), key(192.168.0.1), value(3)
+END { for (i in ip)
+print i, " has accessed ", ip[i], " times."
+}
+
+# reading the most referenced field:
+$ vi maximumcount.awk
+BEGIN { FS=" "; print "most Popular Browser" }
+{ browser[$9]++ }
+END { for (b in browser)
+if ( max < browser[b] ) {
+        max = browser[b];
+        maxbrowser = b;
+}
+print "Most access was from ", maxbrowser, " and ", max, " times."
+}
