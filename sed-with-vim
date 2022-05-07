@@ -4,7 +4,7 @@
 ## vi
 $ cp /etc/ntp.conf .
 $ vi nto.conf
-:%/server/system/g --> in vi it referes to the whole document with a substitute command(/g - globaly) - replace 'server' for system in all occorrences in the file
+:s%/server/system/g --> in vi it referes to the whole document with a substitute command(/g - globaly) - replace 'server' for system in all occorrences in the file
 :1s/system/server/g --> make the change only in the first line
 :1d --> delete first line
 :/^server/s/^/    / --> search from 'server', replace the beginning by a space (indenting)
