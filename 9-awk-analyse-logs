@@ -26,3 +26,5 @@ if ( max < browser[b] ) {
 }
 print "Most access was from ", maxbrowser, " and ", max, " times."
 }
+
+$ awk -f count.awk ~/Library/Logs/photoslibraryupgrade.log --> execute the filtering usinf awk file
